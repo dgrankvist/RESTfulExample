@@ -10,36 +10,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class PartnerController {
+public class PersonController {
 	@Autowired
-	private PartnerRepository repository;
-    @RequestMapping("/test")
+	private PersonRepository repository;
+    @RequestMapping("/test2")
     public String test(@RequestParam(value="name", defaultValue="World") String name) {
         return "{\"id\":\"hello\"}";
     }
     
-    @RequestMapping("/partners")
-    public Iterable<Partner> partners(@RequestParam(value="name", defaultValue="World") String name) {
+    @RequestMapping("/persons")
+    public Iterable<Person> persons(@RequestParam(value="name", defaultValue="World") String name) {
         return repository.findAll();
     }    
 
-    @RequestMapping("/partner/{id}")
-    public Partner get(@PathVariable("id") int id) {
+    @RequestMapping("/person/{id}")
+    public Person get(@PathVariable("id") int id) {
         return repository.findOne(id);
     }
 
-    @RequestMapping(value = "/partner" , method = RequestMethod.POST)
-    public @ResponseBody Partner create(@RequestBody Partner item) {
+    @RequestMapping(value = "/person" , method = RequestMethod.POST)
+    public @ResponseBody Person create(@RequestBody Person item) {
         return repository.save(item);
     }
 
-    @RequestMapping(value = "/partner" , method = RequestMethod.PUT)
-    public @ResponseBody Partner update(@RequestBody Partner item) {
+    @RequestMapping(value = "/person" , method = RequestMethod.PUT)
+    public @ResponseBody Person update(@RequestBody Person item) {
         return repository.save(item);
     }
 
-    @RequestMapping(value = "/partner" , method = RequestMethod.DELETE)
-    public void delete(@RequestBody Partner item) {
+    @RequestMapping(value = "/person" , method = RequestMethod.DELETE)
+    public void delete(@RequestBody Person item) {
         repository.delete(item);
     }
 
